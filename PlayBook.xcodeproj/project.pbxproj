@@ -15,6 +15,10 @@
 		A340571026F366A5007FD358 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A340570F26F366A5007FD358 /* GoogleService-Info.plist */; };
 		A340571626F3728F007FD358 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A340571526F3728F007FD358 /* LoginView.swift */; };
 		A340574126F37ED5007FD358 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A340574026F37ED5007FD358 /* SignUpView.swift */; };
+		A382A9DF2704C70600703CCC /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A382A9DE2704C70600703CCC /* FeedView.swift */; };
+		A382A9E32704C9A600703CCC /* MiniPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A382A9E22704C9A600703CCC /* MiniPostView.swift */; };
+		A3CCFBF026FCA8F50091CDD9 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCFBEF26FCA8F50091CDD9 /* AuthService.swift */; };
+		A3CCFBF326FCAB5F0091CDD9 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCFBF226FCAB5F0091CDD9 /* FirebaseService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +31,10 @@
 		A340570F26F366A5007FD358 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A340571526F3728F007FD358 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A340574026F37ED5007FD358 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		A382A9DE2704C70600703CCC /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		A382A9E22704C9A600703CCC /* MiniPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPostView.swift; sourceTree = "<group>"; };
+		A3CCFBEF26FCA8F50091CDD9 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		A3CCFBF226FCAB5F0091CDD9 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		AE50A2BAA0CF4D99C2938BA8 /* Pods-PlayBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlayBook.debug.xcconfig"; path = "Target Support Files/Pods-PlayBook/Pods-PlayBook.debug.xcconfig"; sourceTree = "<group>"; };
 		DC8B96AAF763A629AE0C3F1E /* Pods-PlayBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlayBook.release.xcconfig"; path = "Target Support Files/Pods-PlayBook/Pods-PlayBook.release.xcconfig"; sourceTree = "<group>"; };
 		F6A19C0AE088DEDF52EA11DC /* Pods_PlayBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlayBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +81,8 @@
 		A34056FE26F36531007FD358 /* PlayBook */ = {
 			isa = PBXGroup;
 			children = (
+				A382A9DD2704C6EB00703CCC /* View */,
+				A3CCFBEE26FCA8DC0091CDD9 /* Services */,
 				A340571426F3724E007FD358 /* Components */,
 				A340570F26F366A5007FD358 /* GoogleService-Info.plist */,
 				A34056FF26F36531007FD358 /* PlayBookApp.swift */,
@@ -99,6 +109,24 @@
 				A340574026F37ED5007FD358 /* SignUpView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		A382A9DD2704C6EB00703CCC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A382A9DE2704C70600703CCC /* FeedView.swift */,
+				A382A9E22704C9A600703CCC /* MiniPostView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A3CCFBEE26FCA8DC0091CDD9 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A3CCFBEF26FCA8F50091CDD9 /* AuthService.swift */,
+				A3CCFBF226FCAB5F0091CDD9 /* FirebaseService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		CF572803EAB02D583A165FC2 /* Pods */ = {
@@ -224,9 +252,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A382A9DF2704C70600703CCC /* FeedView.swift in Sources */,
 				A340574126F37ED5007FD358 /* SignUpView.swift in Sources */,
 				A340571626F3728F007FD358 /* LoginView.swift in Sources */,
+				A382A9E32704C9A600703CCC /* MiniPostView.swift in Sources */,
+				A3CCFBF026FCA8F50091CDD9 /* AuthService.swift in Sources */,
 				A340570226F36531007FD358 /* ContentView.swift in Sources */,
+				A3CCFBF326FCAB5F0091CDD9 /* FirebaseService.swift in Sources */,
 				A340570026F36531007FD358 /* PlayBookApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

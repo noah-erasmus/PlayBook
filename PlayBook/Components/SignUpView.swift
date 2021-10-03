@@ -8,6 +8,13 @@
 import SwiftUI
 
 struct SignUpView: View {
+    
+    @State var isLoading: Bool = true
+    
+    @State var errorMessage = ""
+    @State var showingAlert = false
+    
+    
     var body: some View {
         ZStack{
             Color("red")
