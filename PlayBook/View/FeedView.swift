@@ -27,8 +27,64 @@ struct FeedView: View {
     
     var body: some View {
         ZStack{
-            Color("offWhite")
-            Text("Hello World!")
+            Color("offwhite")
+            NavigationView{
+                ScrollView {
+                    VStack {
+                        ZStack {
+                            Color("white")
+                                .shadow(radius: 5)
+                            VStack(alignment: .leading) {
+                                Text("Hot Plays")
+                                    .fontWeight(.bold)
+                                ScrollView(.horizontal) {
+                                    HStack {
+                                        Image("leagueCap")
+                                            .renderingMode(.original)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .cornerRadius(10)
+                                            .frame(width: .infinity, height: 100, alignment: .leading)
+                                        Image("leagueCap")
+                                            .renderingMode(.original)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .cornerRadius(10)
+                                            .frame(width: .infinity, height: 100, alignment: .leading)
+                                        Image("leagueCap")
+                                            .renderingMode(.original)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .cornerRadius(10)
+                                            .frame(width: .infinity, height: 100, alignment: .leading)
+                                        Image("leagueCap")
+                                            .renderingMode(.original)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .cornerRadius(10)
+                                            .frame(width: .infinity, height: 100, alignment: .leading)
+                                    }
+                                }
+                            }
+                            .padding(EdgeInsets(top: 15, leading: 15, bottom: 10, trailing: 0))
+                        }
+                        MiniPostView()
+                        MiniPostView()
+                    }
+                }
+                .listStyle(PlainListStyle())
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .navigationTitle("Feed")
+                .toolbar {
+                    NavigationLink(
+                        destination: ContentView()
+                            .navigationBarTitle("Filter", displayMode: .inline),
+                        label: {
+                            Image(systemName: "slider.horizontal.3")
+                        }
+                    )
+                }
+            }
         }
     }
 }

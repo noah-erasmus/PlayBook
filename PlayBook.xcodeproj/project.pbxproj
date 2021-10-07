@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B3233BE270ECC7800776EF2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3233BD270ECC7800776EF2 /* LoginView.swift */; };
+		7B3233C0270ED76E00776EF2 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3233BF270ED76E00776EF2 /* RegisterView.swift */; };
 		88B3FAE3D3D4033E2BEC328B /* Pods_PlayBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6A19C0AE088DEDF52EA11DC /* Pods_PlayBook.framework */; };
 		A340570026F36531007FD358 /* PlayBookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34056FF26F36531007FD358 /* PlayBookApp.swift */; };
 		A340570226F36531007FD358 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A340570126F36531007FD358 /* ContentView.swift */; };
 		A340570426F36532007FD358 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A340570326F36532007FD358 /* Assets.xcassets */; };
 		A340570726F36532007FD358 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A340570626F36532007FD358 /* Preview Assets.xcassets */; };
 		A340571026F366A5007FD358 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A340570F26F366A5007FD358 /* GoogleService-Info.plist */; };
-		A340571626F3728F007FD358 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A340571526F3728F007FD358 /* LoginView.swift */; };
-		A340574126F37ED5007FD358 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A340574026F37ED5007FD358 /* SignUpView.swift */; };
 		A382A9DF2704C70600703CCC /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A382A9DE2704C70600703CCC /* FeedView.swift */; };
 		A382A9E32704C9A600703CCC /* MiniPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A382A9E22704C9A600703CCC /* MiniPostView.swift */; };
 		A3CCFBF026FCA8F50091CDD9 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCFBEF26FCA8F50091CDD9 /* AuthService.swift */; };
@@ -22,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B3233BD270ECC7800776EF2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		7B3233BF270ED76E00776EF2 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		A34056FC26F36531007FD358 /* PlayBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A34056FF26F36531007FD358 /* PlayBookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayBookApp.swift; sourceTree = "<group>"; };
 		A340570126F36531007FD358 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -29,8 +31,6 @@
 		A340570626F36532007FD358 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A340570826F36532007FD358 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A340570F26F366A5007FD358 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		A340571526F3728F007FD358 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		A340574026F37ED5007FD358 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		A382A9DE2704C70600703CCC /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		A382A9E22704C9A600703CCC /* MiniPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPostView.swift; sourceTree = "<group>"; };
 		A3CCFBEF26FCA8F50091CDD9 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -83,7 +83,6 @@
 			children = (
 				A382A9DD2704C6EB00703CCC /* View */,
 				A3CCFBEE26FCA8DC0091CDD9 /* Services */,
-				A340571426F3724E007FD358 /* Components */,
 				A340570F26F366A5007FD358 /* GoogleService-Info.plist */,
 				A34056FF26F36531007FD358 /* PlayBookApp.swift */,
 				A340570126F36531007FD358 /* ContentView.swift */,
@@ -102,20 +101,13 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		A340571426F3724E007FD358 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				A340571526F3728F007FD358 /* LoginView.swift */,
-				A340574026F37ED5007FD358 /* SignUpView.swift */,
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
 		A382A9DD2704C6EB00703CCC /* View */ = {
 			isa = PBXGroup;
 			children = (
 				A382A9DE2704C70600703CCC /* FeedView.swift */,
 				A382A9E22704C9A600703CCC /* MiniPostView.swift */,
+				7B3233BD270ECC7800776EF2 /* LoginView.swift */,
+				7B3233BF270ED76E00776EF2 /* RegisterView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -253,11 +245,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A382A9DF2704C70600703CCC /* FeedView.swift in Sources */,
-				A340574126F37ED5007FD358 /* SignUpView.swift in Sources */,
-				A340571626F3728F007FD358 /* LoginView.swift in Sources */,
+				7B3233BE270ECC7800776EF2 /* LoginView.swift in Sources */,
 				A382A9E32704C9A600703CCC /* MiniPostView.swift in Sources */,
 				A3CCFBF026FCA8F50091CDD9 /* AuthService.swift in Sources */,
 				A340570226F36531007FD358 /* ContentView.swift in Sources */,
+				7B3233C0270ED76E00776EF2 /* RegisterView.swift in Sources */,
 				A3CCFBF326FCAB5F0091CDD9 /* FirebaseService.swift in Sources */,
 				A340570026F36531007FD358 /* PlayBookApp.swift in Sources */,
 			);

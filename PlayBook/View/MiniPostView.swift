@@ -10,6 +10,8 @@ import SwiftUI
 struct MiniPostView: View {
     var body: some View {
         ZStack {
+            Color("white")
+                .shadow(radius: 5)
             VStack(alignment: .trailing, spacing: 0) {
                 HStack {
                     Image("theLegend")
