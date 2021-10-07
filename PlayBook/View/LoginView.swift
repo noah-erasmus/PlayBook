@@ -41,7 +41,7 @@ struct LoginView: View {
                                 .padding(EdgeInsets(top: 5, leading: 15, bottom: 10, trailing: 15))
                         }
                     }
-                    .frame(width: 280, height: 60, alignment: .leading)
+                    .frame(width: 280, height: 50, alignment: .leading)
                     ZStack{
                         Color("white")
                             .cornerRadius(5)
@@ -56,7 +56,7 @@ struct LoginView: View {
                                 .padding(EdgeInsets(top: 5, leading: 15, bottom: 10, trailing: 15))
                         }
                     }
-                    .frame(width: 280, height: 60, alignment: .leading)
+                    .frame(width: 280, height: 50, alignment: .leading)
                     .padding(EdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 0))
                     Button(action: {
                         
@@ -67,7 +67,7 @@ struct LoginView: View {
                             .foregroundColor(Color("white"))
                             .cornerRadius(10)
                     })
-                    .padding(.top, 40)
+                    .padding(.top, 20)
                 }
                 
             }
