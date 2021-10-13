@@ -25,4 +25,19 @@ class AuthService {
             onSuccess(userId)
         }
     }
+    
+    static func signIn(email: String, password: String, onSuccess: @escaping (_ user: String) -> Void, onError: @escaping(_ errorMessage: String) -> Void){
+        auth.signIn(withEmail: email, password: password){
+            (authData, error) in
+            
+            if error != nil {
+                onError(error!.localizedDescription)
+                return
+            }
+            
+            guard let userId = authData?.user.uid else {return}
+            
+            onSuccess(userId)
+        }
+    }
 }
