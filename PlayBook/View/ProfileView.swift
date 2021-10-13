@@ -102,6 +102,7 @@ struct ProfileView: View {
                             .padding(.bottom, 10)
                             
                         }
+                        
                         ZStack {
                             Color("white")
                                 .shadow(radius: 5)
@@ -174,6 +175,24 @@ struct ProfileView: View {
                                 }
                             }
                             .padding(.top, 10)
+                        }
+                        ZStack {
+                            Color("white")
+                                .shadow(radius: 5)
+                            VStack(alignment: .leading, spacing: 0) {
+                                Text("Bio")
+                                    .fontWeight(.bold)
+                                    .font(.system(size: 14))
+                                    .padding(.leading, 20)
+                                    .padding(.bottom, 5)
+                                Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer imperdiet elit ligula, et accumsan dui malesuada sed.")
+                                    .font(.system(size: 14))
+                                    .padding(.leading, 20)
+                                    .padding(.trailing, 20)
+                            }
+                            .padding(.top, 10)
+                            .padding(.bottom, 10)
+                            
                         }
                     }
                 }

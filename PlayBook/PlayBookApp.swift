@@ -11,7 +11,7 @@ import Firebase
 @main
 struct PlayBookApp: App {
     
-//    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     var body: some Scene {
         WindowGroup {
@@ -20,11 +20,11 @@ struct PlayBookApp: App {
     }
 }
 
-//class appDelegate: NSObject, UIApplicationDelegate {
-//    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
-//        print("Firebase...")
-//        FirebaseApp.configure()
-//
-//        return true
-//    }
-//}
+class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+        print("Firebase...")
+        FirebaseApp.configure()
+
+        return true
+    }
+}

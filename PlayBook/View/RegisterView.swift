@@ -8,7 +8,49 @@
 import SwiftUI
 
 struct RegisterView: View {
-    @State var username: String = ""
+    @State private var signUpUserVal: String = ""
+    @State private var signUpEmailVal: String = ""
+    @State private var signUpPasswordVal: String = ""
+    @State private var signUpPasswordConfirmVal: String = ""
+    
+    
+    @State var errorMessage: String = ""
+    @State var showingAlert = false
+    @State var alertTitle = "Oh no!"
+    
+    func errorCheck() -> String? {
+        if signUpUserVal.trimmingCharacters(in: .whitespaces).isEmpty ||
+            signUpEmailVal.trimmingCharacters(in: .whitespaces).isEmpty ||
+            signUpPasswordVal.trimmingCharacters(in: .whitespaces).isEmpty
+        {
+            return "Please fill in all the above information."
+        }
+        return nil
+    }
+    
+    func clear() {
+        self.signUpUserVal = ""
+        self.signUpEmailVal = ""
+        self.signUpPasswordVal = ""
+    }
+    
+    func signUp(){
+        if let error = errorCheck(){
+            self.errorMessage = error
+            self.showingAlert = true
+            return
+        }
+        
+        AuthService.signUp(username: signUpUserVal, email: signUpEmailVal, password: signUpPasswordVal, onSuccess: {(uid) in
+            print(uid)
+            return
+        }, onError: {(error) in
+            self.errorMessage = error
+            self.showingAlert = true
+            return
+        })
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 0){
             ZStack{
@@ -36,7 +78,7 @@ struct RegisterView: View {
                                 .foregroundColor(Color("lightPurple"))
                                 .font(.system(size: 10))
                                 .padding(EdgeInsets(top: 5, leading: 15, bottom: 0, trailing: 0))
-                            TextField("TheLegend27", text: $username)
+                            TextField("TheLegend27", text: $signUpUserVal)
                                 .background(Color("white"))
                                 .padding(EdgeInsets(top: 5, leading: 15, bottom: 10, trailing: 15))
                         }
@@ -51,7 +93,7 @@ struct RegisterView: View {
                                 .foregroundColor(Color("lightPurple"))
                                 .font(.system(size: 10))
                                 .padding(EdgeInsets(top: 5, leading: 15, bottom: 0, trailing: 0))
-                            TextField("legend27@gmail.com", text: $username)
+                            TextField("legend27@gmail.com", text: $signUpEmailVal)
                                 .background(Color("white"))
                                 .padding(EdgeInsets(top: 5, leading: 15, bottom: 10, trailing: 15))
                         }
@@ -67,7 +109,7 @@ struct RegisterView: View {
                                 .foregroundColor(Color("lightPurple"))
                                 .font(.system(size: 10))
                                 .padding(EdgeInsets(top: 5, leading: 15, bottom: 0, trailing: 0))
-                            TextField("***********", text: $username)
+                            TextField("***********", text: $signUpPasswordVal)
                                 .background(Color("white"))
                                 .padding(EdgeInsets(top: 5, leading: 15, bottom: 10, trailing: 15))
                         }
@@ -83,7 +125,7 @@ struct RegisterView: View {
                                 .foregroundColor(Color("lightPurple"))
                                 .font(.system(size: 10))
                                 .padding(EdgeInsets(top: 5, leading: 15, bottom: 0, trailing: 0))
-                            TextField("***********", text: $username)
+                            TextField("***********", text: $signUpPasswordConfirmVal)
                                 .background(Color("white"))
                                 .padding(EdgeInsets(top: 5, leading: 15, bottom: 10, trailing: 15))
                         }
@@ -91,7 +133,7 @@ struct RegisterView: View {
                     .frame(width: 280, height: 50, alignment: .leading)
                     .padding(EdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 0))
                     Button(action: {
-                        
+                        signUp()
                     }, label: {
                         Text("LOGIN")
                             .padding(EdgeInsets(top: 11, leading: 60, bottom: 11, trailing: 60))
@@ -100,6 +142,9 @@ struct RegisterView: View {
                             .cornerRadius(10)
                     })
                     .padding(.top, 20)
+                    .alert(isPresented: $showingAlert, content: {
+                        Alert(title: Text(alertTitle), message: Text(errorMessage), dismissButton: .default(Text("Sure thing")))
+                    })
                 }
                 
             }
