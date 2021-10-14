@@ -7,7 +7,37 @@
 
 import SwiftUI
 
+var dummyPost = Post(
+    postId: "1",
+    image: "https://dogtime.com/assets/uploads/2011/03/puppy-development.jpg",
+    caption: "caption",
+    date: 0,
+    likes: 0,
+    ownerId: "1"
+)
+
+extension String {
+    func loadImage() -> UIImage {
+        do {
+            guard let url = URL(string: self) else {
+                return UIImage()
+            }
+            
+            let data: Data = try Data(contentsOf: url)
+            
+            return UIImage(data: data) ?? UIImage()
+        }catch {
+            return UIImage()
+        }
+    }
+}
+
 struct MiniPostView: View {
+    
+    var post: Post
+    
+    @AppStorage("userId") var userId: String = ""
+    
     var body: some View {
         ZStack {
             Color("white")
@@ -46,7 +76,7 @@ struct MiniPostView: View {
                         .font(.system(size: 12))
                 }
                 .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 110))
-                Text("EZ game crushing n00bs in the midlane. #road2diamond")
+                Text(post.caption)
                     .font(.system(size: 14))
                     .frame(width: 250)
             }
@@ -58,7 +88,6 @@ struct MiniPostView: View {
 
 struct MiniPostView_Previews: PreviewProvider {
     static var previews: some View {
-        MiniPostView()
-            .previewLayout(.sizeThatFits)
+        MiniPostView(post: dummyPost)
     }
 }

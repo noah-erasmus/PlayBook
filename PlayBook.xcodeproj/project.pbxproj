@@ -10,6 +10,11 @@
 		7B3233BE270ECC7800776EF2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3233BD270ECC7800776EF2 /* LoginView.swift */; };
 		7B3233C0270ED76E00776EF2 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3233BF270ED76E00776EF2 /* RegisterView.swift */; };
 		7B76340C271720F100D6F8FD /* UserAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B76340B271720F100D6F8FD /* UserAuth.swift */; };
+		7B76340E27173AD400D6F8FD /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B76340D27173AD400D6F8FD /* ImagePicker.swift */; };
+		7B7634102717438100D6F8FD /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B76340F2717438100D6F8FD /* StorageService.swift */; };
+		7B85973727188430008F035E /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B85973627188430008F035E /* Post.swift */; };
+		7B9312682718A0EC003FE5BA /* PostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9312672718A0EC003FE5BA /* PostsViewModel.swift */; };
+		7B93126A2718A7FF003FE5BA /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9312692718A7FF003FE5BA /* ProfileService.swift */; };
 		7BF99643270F16D00095FD22 /* NewPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF99642270F16D00095FD22 /* NewPostView.swift */; };
 		7BF99645270F23E90095FD22 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF99644270F23E90095FD22 /* ProfileView.swift */; };
 		88B3FAE3D3D4033E2BEC328B /* Pods_PlayBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6A19C0AE088DEDF52EA11DC /* Pods_PlayBook.framework */; };
@@ -158,6 +163,11 @@
 		7B3233BF270ED76E00776EF2 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		7B7633CE27170A4100D6F8FD /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
 		7B76340B271720F100D6F8FD /* UserAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuth.swift; sourceTree = "<group>"; };
+		7B76340D27173AD400D6F8FD /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		7B76340F2717438100D6F8FD /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		7B85973627188430008F035E /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		7B9312672718A0EC003FE5BA /* PostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModel.swift; sourceTree = "<group>"; };
+		7B9312692718A7FF003FE5BA /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		7BF99642270F16D00095FD22 /* NewPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostView.swift; sourceTree = "<group>"; };
 		7BF99644270F23E90095FD22 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A34056FC26F36531007FD358 /* PlayBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -217,8 +227,25 @@
 			isa = PBXGroup;
 			children = (
 				7B76340B271720F100D6F8FD /* UserAuth.swift */,
+				7B76340D27173AD400D6F8FD /* ImagePicker.swift */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		7B85972027188413008F035E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7B85973627188430008F035E /* Post.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7B9312512718A0CE003FE5BA /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				7B9312672718A0EC003FE5BA /* PostsViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		98713C7BC6166205773F2D27 /* Frameworks */ = {
@@ -251,6 +278,8 @@
 		A34056FE26F36531007FD358 /* PlayBook */ = {
 			isa = PBXGroup;
 			children = (
+				7B9312512718A0CE003FE5BA /* ViewModels */,
+				7B85972027188413008F035E /* Models */,
 				7B76340A271720C500D6F8FD /* Utility */,
 				A382A9DD2704C6EB00703CCC /* View */,
 				A3CCFBEE26FCA8DC0091CDD9 /* Services */,
@@ -290,6 +319,8 @@
 			children = (
 				A3CCFBEF26FCA8F50091CDD9 /* AuthService.swift */,
 				A3CCFBF226FCAB5F0091CDD9 /* FirebaseService.swift */,
+				7B76340F2717438100D6F8FD /* StorageService.swift */,
+				7B9312692718A7FF003FE5BA /* ProfileService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -571,14 +602,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BF99643270F16D00095FD22 /* NewPostView.swift in Sources */,
+				7B93126A2718A7FF003FE5BA /* ProfileService.swift in Sources */,
 				A382A9DF2704C70600703CCC /* FeedView.swift in Sources */,
 				7BF99645270F23E90095FD22 /* ProfileView.swift in Sources */,
 				7B3233BE270ECC7800776EF2 /* LoginView.swift in Sources */,
 				A382A9E32704C9A600703CCC /* MiniPostView.swift in Sources */,
+				7B85973727188430008F035E /* Post.swift in Sources */,
 				A3CCFBF026FCA8F50091CDD9 /* AuthService.swift in Sources */,
 				A340570226F36531007FD358 /* ContentView.swift in Sources */,
+				7B7634102717438100D6F8FD /* StorageService.swift in Sources */,
 				7B3233C0270ED76E00776EF2 /* RegisterView.swift in Sources */,
 				A3CCFBF326FCAB5F0091CDD9 /* FirebaseService.swift in Sources */,
+				7B9312682718A0EC003FE5BA /* PostsViewModel.swift in Sources */,
+				7B76340E27173AD400D6F8FD /* ImagePicker.swift in Sources */,
 				7B76340C271720F100D6F8FD /* UserAuth.swift in Sources */,
 				A340570026F36531007FD358 /* PlayBookApp.swift in Sources */,
 			);
@@ -713,7 +749,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"PlayBook/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = PlayBook/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -735,7 +771,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"PlayBook/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = PlayBook/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
