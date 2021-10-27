@@ -9,8 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @EnvironmentObject var userAuth: UserAuth 
+//    @EnvironmentObject var session: Session
     let lightPurple = UIColor(red: 107/255, green: 70/255, blue: 246/255, alpha: 1.0)
+    @State var status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
     
     init() {
       let coloredAppearance = UINavigationBarAppearance()
@@ -27,12 +28,26 @@ struct ContentView: View {
     }
     var body: some View {
         NavigationView{
-            if userAuth.isLoggedIn == false {
-                LoginView()
-                    .environmentObject(userAuth)
-            } else {
-                FeedView()
+            ZStack{
+                if self.status {
+                    FeedView()
+                } else {
+                    LoginView()
+                }
+                
             }
+            .onAppear{
+                NotificationCenter.default.addObserver(forName: NSNotification.Name("status"), object: nil, queue: .main){(_) in
+                    self.status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
+                    
+                }
+            }
+//            if session.isLoggedIn == false {
+//                LoginView()
+//                    .environmentObject(session)
+//            } else if session.isLoggedIn == false {
+//                FeedView()
+//            }
             
         }
     }
