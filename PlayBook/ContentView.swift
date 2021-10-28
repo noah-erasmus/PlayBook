@@ -21,6 +21,15 @@ struct ContentView: View {
                         NavigationView{
                             FeedView()
                                 .navigationTitle("Feed")
+                                .toolbar {
+                                    NavigationLink(
+                                        destination: NewPostView()
+                                            .navigationBarTitle("New Post", displayMode: .inline),
+                                        label: {
+                                            Image(systemName: "slider.horizontal.3")
+                                        }
+                                    )
+                                }
                         }
                         .tabItem{Label("Feed", systemImage: "book")}
                         NavigationView{

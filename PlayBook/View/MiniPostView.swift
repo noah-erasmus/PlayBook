@@ -98,9 +98,18 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import Foundation
 
 struct MiniPostView: View {
     var post: Post
+    
+    func getDate(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .long
+        dateFormatter.timeStyle = .short
+        return dateFormatter.string(from: date)
+    }
+
 //    print(post)
     var body: some View {
         ZStack {
@@ -119,7 +128,7 @@ struct MiniPostView: View {
                         Text(post.owner.userName)
                             .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                             .font(.system(size: 16))
-                        Text("45 minutes ago")
+                        Text(getDate(date: post.time))
                             .font(.system(size: 14))
                     }
                     .padding(.trailing, 120)

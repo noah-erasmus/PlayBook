@@ -98,15 +98,6 @@ struct FeedView: View {
                     }
                     .listStyle(PlainListStyle())
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .toolbar {
-                        NavigationLink(
-                            destination: ContentView()
-                                .navigationBarTitle("Filter", displayMode: .inline),
-                            label: {
-                                Image(systemName: "slider.horizontal.3")
-                            }
-                        )
-                    }
                     VStack {
                         Spacer()
                         HStack {

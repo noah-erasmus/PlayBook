@@ -11,9 +11,9 @@ struct Post: Identifiable {
     var id: String
     var image: String
     var caption: String
-    var date: Double
     var likes: Int
     var owner: User
+    var time: Date
     
 }
 
