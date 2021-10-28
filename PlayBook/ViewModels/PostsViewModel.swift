@@ -5,12 +5,52 @@
 //  Created by Noah Erasmus on 2021/10/14.
 //
 
-//import Foundation
-//import FirebaseFirestore
-//
-//class PostsViewModel: ObservableObject {
-//    @Published var posts = [Post]()
-//
+import FirebaseFirestore
+import Combine
+
+class PostsViewModel: ObservableObject {
+    @Published var posts: [Post] = []
+    @Published var noPosts = false
+    let db = Firestore.firestore()
+    
+    init(){
+//        FirebaseService.loadAllPosts(onSuccess: {(allPosts) in
+//            print(allPosts)
+//            self.posts = allPosts
+//        }, onError: {(noposts) in
+//            if noposts {self.noPosts = true}
+//        })
+        loadAllPosts()
+    }
+    
+    func loadAllPosts(){
+        db.collection("posts").addSnapshotListener{(snap, err) in
+            guard let docs = snap else {return}
+
+            docs.documentChanges.forEach{(doc) in
+                if doc.type == .added{
+                    let caption = doc.document.data()["caption"] as! String
+                    let date = doc.document.data()["date"] as? Double ?? 34534
+                    let likes = doc.document.data()["likes"] as? Int ?? 0
+                    let ownerRef = doc.document.data()["ownerId"] as! String
+                    let image = doc.document.data()["image"] as? String ?? ""
+
+
+                    FirebaseService.fetchUser(uid: ownerRef){(user) in
+                        self.posts.append(Post(id: doc.document.documentID, image: image, caption: caption, date: date, likes: likes, owner: user))
+                    }
+
+//                    fetchUser(uid: ownerRef, onSuccess: {(user) in
+//                        posts.append(Post(id: doc.document.documentID, image: image, caption: caption, date: date, likes: likes, owner: user))
+//                    })
+
+
+                }
+            }
+        }
+    }
+
+
 //    private var db = Firestore.firestore()
 //
 //    func fetchData() {
@@ -33,7 +73,7 @@
 //            }
 //        }
 //    }
-//}
+}
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------------------------------------------------------------------

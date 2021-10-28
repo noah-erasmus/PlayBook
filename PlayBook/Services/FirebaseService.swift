@@ -86,31 +86,6 @@
 //        }
 //
 //
-////    static func fetchPosts(){
-////        var posts = [Post]()
-////        db.collection("posts").getDocuments(){ (querySnapshot, err) in
-////            guard let documents = querySnapshot?.documents else {
-////                print("no docs")
-////                return
-////            }
-////
-////            self.posts = documents.map{(queryDocumentSnapshot) -> Post in
-////                let data = queryDocumentSnapshot.data()
-////                let ownerId = data["ownerId"] as? String ?? ""
-////                let surname = data["surname"] as? String ?? ""
-////                return User(name: name, surname: surname)
-////            }
-////            if let err = err {
-////                print("Error getting documents: \(err)")
-////            } else {
-////                for document in querySnapshot!.documents {
-////
-////                    posts.append(document)
-////                }
-////                onSuccess(posts)
-////            }
-////        }
-////    }
 //
 //    static func addNewPost(caption: String, imageUrl: String) {
 //        db.collection("posts").document().setData([
@@ -161,6 +136,57 @@ class FirebaseService{
             }else {
                 print("Document added successfully")
             }
+        }
+    }
+    
+//    static func loadAllPosts(onSuccess:@escaping(_ posts:[Post]) -> Void, onError:@escaping(_ noPosts:Bool) -> Void){
+//        var posts: [Post] = []
+//        db.collection("posts").addSnapshotListener{(snap,err) in
+//            guard let docs = snap else {
+//                onError(true)
+//                return
+//            }
+//            
+//            if docs.documentChanges.isEmpty{
+//                onError(true)
+//                return
+//            }
+//            
+//            docs.documentChanges.forEach{(doc) in
+//                if doc.type == .added{
+//                    let caption = doc.document.data()["caption"] as! String
+//                    let date = doc.document.data()["date"] as? Double ?? 34534
+//                    let likes = doc.document.data()["likes"] as? Int ?? 0
+//                    let ownerRef = doc.document.data()["ownerId"] as! String
+//                    let image = doc.document.data()["imageUrl"] as? String ?? ""
+//                    
+//                    fetchUser(uid: ownerRef, onSuccess: {(user) in
+//                        print(Post(id: doc.document.documentID, image: image, caption: caption, date: date, likes: likes, owner: user))
+//                        posts.append(Post(id: doc.document.documentID, image: image, caption: caption, date: date, likes: likes, owner: user))
+////                        print(posts)
+//                    })
+//                    
+//                }
+//            }
+//            print(posts)
+//            onSuccess(posts)
+//        }
+//    }
+    
+    static func fetchUser(uid:String,onSuccess:@escaping(_ user:User) -> Void){
+        db.collection("users").document(uid).getDocument{(doc,err) in
+            guard let user = doc else {return}
+            
+            let username = user.data()?["username"] as? String ?? ""
+            let picture = user.data()?["picture"] as? String ?? ""
+            let bio = user.data()?["bio"] as? String ?? ""
+            let email = user.data()?["email"] as? String ?? ""
+            
+//            let followers = user.data()?["followers"] as! [User]
+//            let following = user.data()?["username"] as! [User]
+            
+            print("user fetched")
+            onSuccess(User(userName: username, email: email, posts: [], followers: 0, following: 0, bio: bio, imageUrl: picture))
         }
     }
 }
