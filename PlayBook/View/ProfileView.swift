@@ -351,13 +351,22 @@ struct ProfileView: View {
                                 .aspectRatio( contentMode: .fill)
                                 .frame(width: .infinity, height: 200, alignment: .trailing)
                             VStack {
-                                Text(profileData.userInfo.userName)
-                                    .foregroundColor(.black)
-                                    .fontWeight(.bold)
-                                    .font(.system(size:16))
-                                Text(profileData.userInfo.email)
-                                    .foregroundColor(.black)
-                                    .font(.system(size:14))
+                                HStack {
+                                    Text(profileData.userInfo.userName)
+                                        .foregroundColor(.black)
+                                        .fontWeight(.bold)
+                                        .font(.system(size:16))
+                                    Button(action: {
+                                        profileData.updateDetails(field: "Name")
+                                    }){
+                                        Image(systemName: "pencil.circle.fill")
+                                            .font(.system(size: 24))
+                                            .foregroundColor(Color("lightPurple"))
+                                    }
+                                }
+//                                Text(profileData.userInfo.email)
+//                                    .foregroundColor(.black)
+//                                    .font(.system(size:14))
                             }
                         }
                         ZStack {
@@ -449,11 +458,18 @@ struct ProfileView: View {
                     Color("white")
                         .shadow(radius: 5)
                     VStack(alignment: .leading, spacing: 0) {
-                        Text("Bio")
-                            .fontWeight(.bold)
-                            .font(.system(size: 14))
-                            .padding(.leading, 20)
-                            .padding(.bottom, 5)
+                        HStack {
+                            Text("Bio")
+                                .fontWeight(.bold)
+                                .font(.system(size: 14))
+                                .padding(.leading, 20)
+                                .padding(.bottom, 5)
+                            Button(action: {
+                                profileData.updateDetails(field: "Bio")
+                            }){
+                                Image(systemName: "pencil.circle.fill")
+                            }
+                        }
                         Text(profileData.userInfo.bio)
                             .font(.system(size: 14))
                             .padding(.leading, 20)

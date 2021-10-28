@@ -64,4 +64,22 @@ class ProfileViewModel: ObservableObject {
         }
     }
     
+    func updateDetails(field:String){
+        alertView(msg: "Update \(field)"){(txt) in
+            if txt != "" {
+                self.updateBio(id: field == "Name" ? "username" : "bio", value: txt)
+            }
+        }
+    }
+    
+    func updateBio(id:String,value:String){
+        db.collection("users").document(uid).updateData([
+            id:value,
+        ]){(err) in
+            if err != nil {return}
+            
+            self.fetchCurUser()
+        }
+    }
+    
 }
