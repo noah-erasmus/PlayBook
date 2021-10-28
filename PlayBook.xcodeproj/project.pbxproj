@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		7B3233BE270ECC7800776EF2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3233BD270ECC7800776EF2 /* LoginView.swift */; };
 		7B3233C0270ED76E00776EF2 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3233BF270ED76E00776EF2 /* RegisterView.swift */; };
+		7B63BFA7272ABADA00A8F833 /* NewPostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B63BFA6272ABADA00A8F833 /* NewPostModel.swift */; };
+		7B63BFAB272ACC2200A8F833 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B63BFAA272ACC2200A8F833 /* ProfileViewModel.swift */; };
+		7B63BFAD272AF36800A8F833 /* UploadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B63BFAC272AF36800A8F833 /* UploadImage.swift */; };
 		7B65E3AA27211EF80047BC96 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B65E3A927211EF80047BC96 /* Session.swift */; };
 		7B669D30272075E000B648F4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B669D2F272075E000B648F4 /* User.swift */; };
 		7B76340E27173AD400D6F8FD /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B76340D27173AD400D6F8FD /* ImagePicker.swift */; };
@@ -184,6 +187,9 @@
 /* Begin PBXFileReference section */
 		7B3233BD270ECC7800776EF2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		7B3233BF270ED76E00776EF2 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		7B63BFA6272ABADA00A8F833 /* NewPostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostModel.swift; sourceTree = "<group>"; };
+		7B63BFAA272ACC2200A8F833 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		7B63BFAC272AF36800A8F833 /* UploadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImage.swift; sourceTree = "<group>"; };
 		7B65E3A927211EF80047BC96 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		7B669D2F272075E000B648F4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7B7633CE27170A4100D6F8FD /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
@@ -265,6 +271,7 @@
 			children = (
 				7B85973627188430008F035E /* Post.swift */,
 				7B669D2F272075E000B648F4 /* User.swift */,
+				7B63BFAC272AF36800A8F833 /* UploadImage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -273,6 +280,8 @@
 			isa = PBXGroup;
 			children = (
 				7B9312672718A0EC003FE5BA /* PostsViewModel.swift */,
+				7B63BFA6272ABADA00A8F833 /* NewPostModel.swift */,
+				7B63BFAA272ACC2200A8F833 /* ProfileViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -662,12 +671,15 @@
 				7B3233BE270ECC7800776EF2 /* LoginView.swift in Sources */,
 				A382A9E32704C9A600703CCC /* MiniPostView.swift in Sources */,
 				7B85973727188430008F035E /* Post.swift in Sources */,
+				7B63BFAD272AF36800A8F833 /* UploadImage.swift in Sources */,
 				7BB6D1E72729ACD90043F375 /* ErrorView.swift in Sources */,
 				7B669D30272075E000B648F4 /* User.swift in Sources */,
 				7B65E3AA27211EF80047BC96 /* Session.swift in Sources */,
 				A3CCFBF026FCA8F50091CDD9 /* AuthService.swift in Sources */,
 				A340570226F36531007FD358 /* ContentView.swift in Sources */,
+				7B63BFA7272ABADA00A8F833 /* NewPostModel.swift in Sources */,
 				7B7634102717438100D6F8FD /* StorageService.swift in Sources */,
+				7B63BFAB272ACC2200A8F833 /* ProfileViewModel.swift in Sources */,
 				7B3233C0270ED76E00776EF2 /* RegisterView.swift in Sources */,
 				A3CCFBF326FCAB5F0091CDD9 /* FirebaseService.swift in Sources */,
 				7B9312682718A0EC003FE5BA /* PostsViewModel.swift in Sources */,

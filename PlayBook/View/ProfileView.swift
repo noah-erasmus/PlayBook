@@ -333,21 +333,33 @@
 // --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct ProfileView: View {
+    @StateObject var profileData = ProfileViewModel()
+    @State var userId = UserDefaults.standard.value(forKey: "user") as? String ?? ""
+    
     var body: some View {
         ScrollView {
             VStack {
                 ZStack {
                     VStack(spacing:0) {
-                        Image("placeholder")
-                            .renderingMode(.original)
-                            .resizable()
-                            .aspectRatio( contentMode: .fill)
-                            .frame(width: .infinity, height: 200, alignment: .trailing)
-//                                    .onTapGesture(perform: {
-//                                        self.showingActionSheet = true
-//                                    })
+                        ZStack {
+                            Image("placeholder")
+                                .renderingMode(.original)
+                                .resizable()
+                                .aspectRatio( contentMode: .fill)
+                                .frame(width: .infinity, height: 200, alignment: .trailing)
+                            VStack {
+                                Text(profileData.userInfo.userName)
+                                    .foregroundColor(.black)
+                                    .fontWeight(.bold)
+                                    .font(.system(size:16))
+                                Text(profileData.userInfo.email)
+                                    .foregroundColor(.black)
+                                    .font(.system(size:14))
+                            }
+                        }
                         ZStack {
                             Color("lightPurple")
                             HStack {
@@ -401,16 +413,37 @@ struct ProfileView: View {
                         }
 
                     }
-                    Image("placeholderCircle")
-                        .renderingMode(.original)
-                        .resizable()
-                        .aspectRatio( contentMode: .fill)
-                        .frame(width: 100, height: 100, alignment: .trailing)
-                        .overlay(
-                            Circle()
-                                .stroke(Color("white"), lineWidth: 4)
-                        )
-                        .padding(EdgeInsets(top: 80, leading: 0, bottom: 0, trailing: 180))
+                    
+                    if profileData.userInfo.imageUrl != "" {
+                        WebImage(url: URL(string: profileData.userInfo.imageUrl))
+                            .renderingMode(.original)
+                            .resizable()
+                            .aspectRatio( contentMode: .fill)
+                            .frame(width: 100, height: 100, alignment: .trailing)
+                            .overlay(
+                                Circle()
+                                    .stroke(Color("white"), lineWidth: 4)
+                            )
+                            .padding(EdgeInsets(top: 80, leading: 0, bottom: 0, trailing: 180))
+                            .onTapGesture{
+                                profileData.picker.toggle()
+                            }
+                        
+                        if profileData.isLoading {
+                            ProgressView()
+                        }
+                    } else {
+                        Image("placeholderCircle")
+                            .renderingMode(.original)
+                            .resizable()
+                            .aspectRatio( contentMode: .fill)
+                            .frame(width: 100, height: 100, alignment: .trailing)
+                            .overlay(
+                                Circle()
+                                    .stroke(Color("white"), lineWidth: 4)
+                            )
+                            .padding(EdgeInsets(top: 80, leading: 0, bottom: 0, trailing: 180))
+                    }
                 }
                 ZStack {
                     Color("white")
@@ -421,7 +454,7 @@ struct ProfileView: View {
                             .font(.system(size: 14))
                             .padding(.leading, 20)
                             .padding(.bottom, 5)
-                        Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer imperdiet elit ligula, et accumsan dui malesuada sed.")
+                        Text(profileData.userInfo.bio)
                             .font(.system(size: 14))
                             .padding(.leading, 20)
                             .padding(.trailing, 20)
@@ -435,7 +468,7 @@ struct ProfileView: View {
                     Color("white")
                         .shadow(radius: 5)
                     VStack (alignment: .leading, spacing: 0) {
-                        Text("Friends")
+                        Text("Games")
                             .fontWeight(.bold)
                             .font(.system(size: 14))
                             .padding(.leading, 20)
@@ -508,7 +541,7 @@ struct ProfileView: View {
                     Color("white")
                         .shadow(radius: 5)
                     VStack(alignment: .leading, spacing: 0) {
-                        Text("Bio")
+                        Text("Posts")
                             .fontWeight(.bold)
                             .font(.system(size: 14))
                             .padding(.leading, 20)
@@ -523,6 +556,12 @@ struct ProfileView: View {
 
                 }
             }
+        }
+        .sheet(isPresented: $profileData.picker){
+            ImagePicker(picker: $profileData.picker, imgData: $profileData.imgData)
+        }
+        .onChange(of: profileData.imgData){(newData) in
+            profileData.updateImage()
         }
         
 //        .navigationBarTitle("Profile", displayMode: .inline)

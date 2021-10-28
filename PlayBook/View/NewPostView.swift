@@ -200,9 +200,10 @@
 import SwiftUI
 
 struct NewPostView: View {
-    @State var caption: String = "Write a caption..."
+    @StateObject var newPostData = NewPostModel()
     @State var pickedImage: UIImage?
     @State var displayImage: Image?
+    @Environment(\.presentationMode) var present
     var body: some View {
         ZStack {
             Color("offwhite")
@@ -218,20 +219,20 @@ struct NewPostView: View {
                                         .resizable()
                                         .aspectRatio( contentMode: .fill)
                                         .frame(width: 350, height: 280, alignment: .trailing)
-//                                        .onTapGesture(perform: {
-//                                            self.showingActionSheet = true
-//                                        })
+                                        .onTapGesture(perform: {
+                                            newPostData.picker.toggle()
+                                        })
                                 } else {
                                     Image("placeholder")
                                     .renderingMode(.original)
                                     .resizable()
                                     .aspectRatio( contentMode: .fill)
                                     .frame(width: 350, height: 280, alignment: .trailing)
-//                                    .onTapGesture(perform: {
-//                                        self.showingActionSheet = true
-//                                    })
+                                    .onTapGesture(perform: {
+                                        newPostData.picker.toggle()
+                                    })
                                 }
-                                TextEditor(text: $caption)
+                                TextEditor(text: $newPostData.postTxt)
                                     .font(.system(size: 10))
                                     .opacity(40)
                                     .padding(.leading, 30)
@@ -301,9 +302,30 @@ struct NewPostView: View {
         }
         .navigationBarTitle("New Post", displayMode: .inline)
         .navigationBarHidden(false)
-//        .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
-//            ImagePicker(pickedImage: $pickedImage)
-//        }.actionSheet(isPresented: $showingActionSheet) {
+        .toolbar {
+            NavigationLink(
+                destination: FeedView()
+                    .navigationTitle("Feed")
+                    .toolbar {
+                        NavigationLink(
+                            destination: NewPostView()
+                                .navigationBarTitle("New Post", displayMode: .inline),
+                            label: {
+                                Image(systemName: "slider.horizontal.3")
+                            }
+                        )
+                    },
+                label: {
+                    Button(action: newPostData.post){
+                        Image(systemName: "checkmark")
+                    }
+                }
+            )
+        }
+        .sheet(isPresented: $newPostData.picker) {
+            ImagePicker(picker: $newPostData.picker, imgData: $newPostData.imgData)
+        }
+        //.actionSheet(isPresented: $showingActionSheet) {
 //            ActionSheet(title: Text(""), buttons: [.default(Text("Choose an image")) {
 //                self.sourceType = .photoLibrary
 //                self.showingImagePicker = true

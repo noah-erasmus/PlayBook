@@ -11,6 +11,8 @@ import Combine
 class PostsViewModel: ObservableObject {
     @Published var posts: [Post] = []
     @Published var noPosts = false
+    @Published var newPost = false
+    
     let db = Firestore.firestore()
     
     init(){

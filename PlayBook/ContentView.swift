@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct ContentView: View {
     
@@ -35,6 +36,15 @@ struct ContentView: View {
                         NavigationView{
                             ProfileView()
                                 .navigationTitle("Profile")
+                                .toolbar {
+                                    Button(action:{
+                                        try! Auth.auth().signOut()
+                                        UserDefaults.standard.set(false, forKey: "status")
+                                        NotificationCenter.default.post(name: NSNotification.Name("status"), object: nil)
+                                    }){
+                                        Image(systemName: "escape")
+                                    }
+                                }
                         }
                         .tabItem{Label("Profile", systemImage: "gear")}
                         
