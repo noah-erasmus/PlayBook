@@ -102,6 +102,7 @@ import Foundation
 
 struct MiniPostView: View {
     var post: Post
+    @State var isLiked = false
     
     func getDate(date: Date) -> String {
         let dateFormatter = DateFormatter()
@@ -110,13 +111,16 @@ struct MiniPostView: View {
         return dateFormatter.string(from: date)
     }
 
-//    print(post)
     var body: some View {
         ZStack {
+            //Background
             Color("white")
                 .shadow(radius: 5)
+            
             VStack(alignment: .trailing, spacing: 0) {
+                //Post details
                 HStack {
+                    //User image
                     AsyncImage(url: URL(string: post.owner.imageUrl)){image in
                         image.resizable()
                     } placeholder: {
@@ -124,6 +128,8 @@ struct MiniPostView: View {
                     }
                     .frame(width: 50, height: 50)
                     .cornerRadius(50)
+                    
+                    //Username and post time
                     VStack(alignment: .leading) {
                         Text(post.owner.userName)
                             .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
@@ -133,30 +139,59 @@ struct MiniPostView: View {
                     }
                     .padding(.trailing, 120)
                 }
-                .frame(width: .infinity, height: .infinity, alignment: .leading)
+                .frame(maxWidth: .infinity, maxHeight: 60, alignment: .leading)
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
+                
+                
+                //Post image
                 AsyncImage(url: URL(string: post.image)){image in
                     image.resizable()
                 } placeholder: {
                     ProgressView()
                 }
                 .cornerRadius(10)
-                .frame(width: .infinity, height: 130, alignment: .leading)
+                .frame(maxWidth: .infinity, maxHeight: 400, alignment: .leading)
+                
+                //Likes and comments
                 HStack {
-                    Image(systemName: "suit.heart")
+                    //Likes
+                    if isLiked {
+                        Button(action: {
+                            isLiked = false
+                        }){
+                            Image(systemName: "heart.fill")
+                        }
+                    } else {
+                        Button(action: {
+                            isLiked = true
+                        }){
+                            Image(systemName: "heart")
+                        }
+                    }
                     Text("152")
                         .font(.system(size: 12))
+                    
+                    //Comments
                     Image(systemName: "bubble.right")
-                    Text("24")
+                    Text("0")
                         .font(.system(size: 12))
+                    
+                    Spacer()
                 }
-                .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 110))
-                Text(post.caption)
-                    .font(.system(size: 14))
-                    .frame(width: 250)
+                .padding(EdgeInsets(top: 15, leading: 0, bottom: 15, trailing: 0))
+                
+                //Post caption
+                HStack {
+                    Text(post.caption)
+                        .font(.system(size: 14))
+                        .frame(maxWidth: .infinity)
+                    
+                    Spacer()
+                }
+                .frame(maxWidth: .infinity)
             }
             .padding()
         }
-        .frame(width: .infinity, height: .infinity, alignment: .leading)
+        .frame(maxWidth: 500, maxHeight: .infinity, alignment: .leading)
     }
 }

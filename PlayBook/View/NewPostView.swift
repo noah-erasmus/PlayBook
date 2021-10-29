@@ -200,106 +200,176 @@
 import SwiftUI
 
 struct NewPostView: View {
+    
+    //Variables
     @StateObject var newPostData = NewPostModel()
     @State var pickedImage: UIImage?
     @State var displayImage: Image?
     @Environment(\.presentationMode) var present
+    
     var body: some View {
         ZStack {
+            //Background
             Color("offwhite")
-            ZStack {
-                ScrollView {
-                    VStack(alignment: .leading, spacing: 0 ) {
-                        ZStack {
-                            Color("white")
-                                .shadow(radius: 5)
-                            VStack(alignment: .leading, spacing: 0){
-                                if displayImage != nil {
-                                    displayImage!
-                                        .resizable()
-                                        .aspectRatio( contentMode: .fill)
-                                        .frame(width: 350, height: 280, alignment: .trailing)
-                                        .onTapGesture(perform: {
-                                            newPostData.picker.toggle()
-                                        })
-                                } else {
-                                    Image("placeholder")
-                                    .renderingMode(.original)
-                                    .resizable()
-                                    .aspectRatio( contentMode: .fill)
-                                    .frame(width: 350, height: 280, alignment: .trailing)
-                                    .onTapGesture(perform: {
-                                        newPostData.picker.toggle()
-                                    })
-                                }
-                                TextEditor(text: $newPostData.postTxt)
-                                    .font(.system(size: 10))
-                                    .opacity(40)
-                                    .padding(.leading, 30)
-                                    .padding(.top, 10)
-                                Spacer()
-
-                            }
+            
+            ScrollView {
+                
+                ZStack {
+                    
+                    Color("white")
+                    
+                    VStack {
+                        if newPostData.imgData.count != 0 {
+                            //Selected image
+                            Image(uiImage: UIImage(data: newPostData.imgData)!)
+                                .resizable()
+                                .aspectRatio( contentMode: .fill)
+                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
+                                .onTapGesture(perform: {
+                                    newPostData.picker.toggle()
+                                })
+                        } else {
+                            //Placeholder
+                            Image("placeholder")
+                            .renderingMode(.original)
+                            .resizable()
+                            .aspectRatio( contentMode: .fill)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 400)
+                            .onTapGesture(perform: {
+                                newPostData.picker.toggle()
+                            })
                         }
-                        .frame(width: .infinity, height: 380)
-                        ZStack {
-                            Color("white")
-                                .shadow(radius: 5)
-                            HStack {
-                                Image(systemName: "tag.fill")
-                                    .foregroundColor(Color("lightPurple"))
-                                Text("Tag People")
-                                    .font(.system(size: 14))
-                                Spacer()
-                            }
-                            .padding(.leading, 35)
+                        
+                        HStack{
+                            TextEditor(text: $newPostData.postTxt)
+                                .font(.system(size: 10))
+                                .opacity(40)
+                                .padding(.leading, 100)
+//                                .padding(.top, 10)
+                                .foregroundColor(.black)
                         }
-                        .frame(width: .infinity, height: 45)
-                        .padding(.top, 10)
-                        ZStack {
-                            Color("white")
-                                .shadow(radius: 5)
-                            HStack {
-                                Image(systemName: "gamecontroller.fill")
-                                    .foregroundColor(Color("lightPurple"))
-                                Text("Add Game")
-                                    .font(.system(size: 14))
-                                Spacer()
-                            }
-                            .padding(.leading, 35)
-                        }
-                        .frame(width: .infinity, height: 45)
-                        .padding(.top, 10)
-
+                        .frame(height: 100)
                     }
-                    .frame(width: .infinity)
-
                 }
-                VStack {
-                    Spacer()
+                
+                ZStack {
+                    Color("white")
+                        .shadow(radius: 5)
                     HStack {
+                        Image(systemName: "tag.fill")
+                            .foregroundColor(Color("lightPurple"))
+                        Text("Tag People")
+                            .font(.system(size: 14))
                         Spacer()
-                        Button(action: {
-//                            UploadImage()
-                        }, label: {
-                            Text("+")
-                                .font(.system(.largeTitle))
-                                .frame(width: 77, height: 70)
-                                .foregroundColor(Color.white)
-                                .padding(.bottom, 7)
-                        })
-                        .background(Color("lightPurple"))
-                        .cornerRadius(38.5)
-                        .padding()
-                        .shadow(color: Color.black.opacity(0.3),
-                                radius: 3,
-                                x: 3,
-                                y: 3)
                     }
+                    .padding(.leading, 110)
                 }
+                .frame(height:60)
+//                .frame(maxWidth: .infinity)
+                ZStack {
+                    Color("white")
+                        .shadow(radius: 5)
+                    HStack {
+                        Image(systemName: "gamecontroller.fill")
+                            .foregroundColor(Color("lightPurple"))
+                        Text("Add Game")
+                            .font(.system(size: 14))
+                        Spacer()
+                    }
+                    .padding(.leading, 110)
+                }
+                .frame(height:60)
+//                .frame(maxWidth: .infinity)
+                
+//                VStack(alignment: .leading, spacing: 0 ) {
+//                    ZStack {
+//                        //Edit background
+//                        Color("white")
+//                            .shadow(radius: 5)
+//
+//                        //Image and caption input
+//                        VStack(alignment: .leading, spacing: 0){
+//
+//                            VStack {
+//                                //Check if an image has been selected
+//                                if newPostData.imgData.count != 0 {
+//                                    //Selected image
+//                                    Image(uiImage: UIImage(data: newPostData.imgData)!)
+//                                        .resizable()
+//                                        .aspectRatio( contentMode: .fill)
+//                                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
+//                                        .onTapGesture(perform: {
+//                                            newPostData.picker.toggle()
+//                                        })
+//                                } else {
+//                                    //Placeholder
+//                                    Image("placeholder")
+//                                    .renderingMode(.original)
+//                                    .resizable()
+//                                    .aspectRatio( contentMode: .fill)
+//                                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
+//                                    .onTapGesture(perform: {
+//                                        newPostData.picker.toggle()
+//                                    })
+//                                }
+//                            }
+//                            .frame(maxWidth: .infinity, maxHeight: 400)
+//
+//                            //Caption
+//                            HStack{
+//                                TextEditor(text: $newPostData.postTxt)
+//                                    .font(.system(size: 10))
+//                                    .opacity(40)
+//                                    .padding(.leading, 30)
+//                                    .padding(.top, 10)
+//                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+//
+//                                Spacer()
+//                            }
+//                            .frame(maxWidth: .infinity, maxHeight: 200)
+//
+//                        }
+//                        .frame(maxWidth: .infinity, maxHeight: 450)
+//                    }
+//                    .frame(maxWidth: .infinity, maxHeight: 500)
+//                    ZStack {
+//                        Color("white")
+//                            .shadow(radius: 5)
+//                        HStack {
+//                            Image(systemName: "tag.fill")
+//                                .foregroundColor(Color("lightPurple"))
+//                            Text("Tag People")
+//                                .font(.system(size: 14))
+//                            Spacer()
+//                        }
+//                        .padding(.leading, 35)
+//                    }
+//                    .frame(maxWidth: .infinity, maxHeight: 45)
+//                    .padding(.top, 10)
+//                    ZStack {
+//                        Color("white")
+//                            .shadow(radius: 5)
+//                        HStack {
+//                            Image(systemName: "gamecontroller.fill")
+//                                .foregroundColor(Color("lightPurple"))
+//                            Text("Add Game")
+//                                .font(.system(size: 14))
+//                            Spacer()
+//                        }
+//                        .padding(.leading, 35)
+//                    }
+//                    .frame(maxWidth: .infinity, maxHeight: 45)
+//                    .padding(.top, 10)
+//
+//                }
+//                .frame(maxWidth: .infinity)
+
             }
 
         }
+        .opacity(newPostData.isPosting ? 0.5 : 1)
+        .disabled(newPostData.isPosting ? true : false)
         .navigationBarTitle("New Post", displayMode: .inline)
         .navigationBarHidden(false)
         .toolbar {
@@ -316,7 +386,7 @@ struct NewPostView: View {
                         )
                     },
                 label: {
-                    Button(action: newPostData.post){
+                    Button(action: {newPostData.post(present: present)}){
                         Image(systemName: "checkmark")
                     }
                 }

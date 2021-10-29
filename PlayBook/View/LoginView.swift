@@ -185,7 +185,7 @@ struct LoginView: View {
             ZStack{
                 Color("lightPurple")
             }
-            .frame(width:.infinity, height: 200)
+            .frame(maxWidth: .infinity, maxHeight: 200)
             ZStack {
                 Color("offwhite")
                 VStack{

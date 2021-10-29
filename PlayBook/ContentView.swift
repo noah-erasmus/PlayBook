@@ -27,7 +27,7 @@ struct ContentView: View {
                                         destination: NewPostView()
                                             .navigationBarTitle("New Post", displayMode: .inline),
                                         label: {
-                                            Image(systemName: "slider.horizontal.3")
+                                            Image(systemName: "plus")
                                         }
                                     )
                                 }
