@@ -31,7 +31,6 @@ class NewPostModel: ObservableObject {
                     "image":url,
                     "time":Date(),
                     "likes":0,
-//                    "ownerId":self.db.collection("users").document(self.uid),
                     "ownerId":Auth.auth().currentUser!.uid,
                 ]){(err) in
                     if err != nil {

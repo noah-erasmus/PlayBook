@@ -32,10 +32,10 @@ struct ContentView: View {
                                     )
                                 }
                         }
-                        .tabItem{Label("Feed", systemImage: "book")}
+                        .tabItem{Label("Feed", systemImage: "rectangle.grid.1x2.fill")}
                         NavigationView{
                             ProfileView()
-                                .navigationTitle("Profile")
+                                .navigationBarTitle("Profile", displayMode: .inline)
                                 .toolbar {
                                     Button(action:{
                                         try! Auth.auth().signOut()
@@ -46,7 +46,7 @@ struct ContentView: View {
                                     }
                                 }
                         }
-                        .tabItem{Label("Profile", systemImage: "gear")}
+                        .tabItem{Label("Profile", systemImage: "person.fill")}
                         
                     }
                 } else {
@@ -57,7 +57,6 @@ struct ContentView: View {
             .onAppear{
                 NotificationCenter.default.addObserver(forName: NSNotification.Name("status"), object: nil, queue: .main){(_) in
                     self.status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
-                    
                 }
             }
 //            if session.isLoggedIn == false {

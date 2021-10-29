@@ -342,68 +342,102 @@ struct ProfileView: View {
     var body: some View {
         ScrollView {
             VStack {
+                //Profile picture and details
                 ZStack {
+                    Color("white")
+                    
                     VStack(spacing:0) {
-                        ZStack {
-                            Image("placeholder")
-                                .renderingMode(.original)
-                                .resizable()
-                                .aspectRatio( contentMode: .fill)
-                                .frame(width: .infinity, height: 200, alignment: .trailing)
-                            VStack {
-                                HStack {
-                                    Text(profileData.userInfo.userName)
-                                        .foregroundColor(.black)
-                                        .fontWeight(.bold)
-                                        .font(.system(size:16))
-                                    Button(action: {
-                                        profileData.updateDetails(field: "Name")
-                                    }){
-                                        Image(systemName: "pencil.circle.fill")
-                                            .font(.system(size: 24))
-                                            .foregroundColor(Color("lightPurple"))
-                                    }
-                                }
-//                                Text(profileData.userInfo.email)
-//                                    .foregroundColor(.black)
-//                                    .font(.system(size:14))
-                            }
-                        }
+                        //Purple bar
                         ZStack {
                             Color("lightPurple")
+                            
                             HStack {
-                                Spacer()
-                                VStack {
-                                    Text("1302")
-                                        .font(.system(size: 14))
-                                        .fontWeight(.bold)
-                                        .foregroundColor(Color("white"))
-                                    Text("Followers")
-                                        .font(.system(size: 12))
-                                        .foregroundColor(Color("white"))
+                                HStack {
+                                    if profileData.userInfo.imageUrl != "" {
+                                        WebImage(url: URL(string: profileData.userInfo.imageUrl))
+                                            .renderingMode(.original)
+                                            .resizable()
+                                            .cornerRadius(50)
+                                            .frame(width: 80, height: 80, alignment: .trailing)
+                                            .overlay(
+                                                Circle()
+                                                    .stroke(Color("white"), lineWidth: 4)
+                                            )
+                                            .onTapGesture{
+                                                profileData.picker.toggle()
+                                            }
+                                        
+                                        if profileData.isLoading {
+                                            ProgressView()
+                                        }
+                                    } else {
+                                        Image("placeholderCircle")
+                                            .renderingMode(.original)
+                                            .resizable()
+                                            .cornerRadius(50)
+                                            .frame(width: 80, height: 80, alignment: .trailing)
+                                            .overlay(
+                                                Circle()
+                                                    .stroke(Color("white"), lineWidth: 4)
+                                            )
+                                    }
                                 }
-                                VStack {
-                                    Text("1834")
-                                        .font(.system(size: 14))
-                                        .fontWeight(.bold)
-                                        .foregroundColor(Color("white"))
-                                    Text("Following")
-                                        .font(.system(size: 12))
-                                        .foregroundColor(Color("white"))
+                                .padding(.trailing,30)
+                                
+                                //Details
+                                VStack(alignment: .center) {
+                                    //Username
+                                    HStack(alignment: .center) {
+                                        Text(profileData.userInfo.userName)
+                                            .foregroundColor(.white)
+                                            .fontWeight(.bold)
+                                            .font(.system(size:18))
+                                        Button(action: {
+                                            profileData.updateDetails(field: "Name")
+                                        }){
+                                            Image(systemName: "pencil")
+                                                .font(.system(size: 16))
+                                                .foregroundColor(Color("white"))
+                                        }
+                                    }
+                                    .padding(.bottom,5)
+                                    
+                                    //Counts
+                                    HStack {
+                                        VStack {
+                                            Text("1302")
+                                                .font(.system(size: 14))
+                                                .fontWeight(.bold)
+                                                .foregroundColor(Color("white"))
+                                            Text("Followers")
+                                                .font(.system(size: 12))
+                                                .foregroundColor(Color("white"))
+                                        }
+                                        VStack {
+                                            Text("1834")
+                                                .font(.system(size: 14))
+                                                .fontWeight(.bold)
+                                                .foregroundColor(Color("white"))
+                                            Text("Following")
+                                                .font(.system(size: 12))
+                                                .foregroundColor(Color("white"))
+                                        }
+                                        VStack {
+                                            Text("146")
+                                                .font(.system(size: 14))
+                                                .fontWeight(.bold)
+                                                .foregroundColor(Color("white"))
+                                            Text("Posts")
+                                                .font(.system(size: 12))
+                                                .foregroundColor(Color("white"))
+                                        }
+                                    }
                                 }
-                                VStack {
-                                    Text("146")
-                                        .font(.system(size: 14))
-                                        .fontWeight(.bold)
-                                        .foregroundColor(Color("white"))
-                                    Text("Posts")
-                                        .font(.system(size: 12))
-                                        .foregroundColor(Color("white"))
-                                }
+                                .padding(.trailing,30)
                             }
-                            .padding(.trailing, 30)
+                            .padding(.vertical, 20)
                         }
-                        .frame(width: .infinity, height: 80)
+                        
                         ZStack {
                             Color("white")
                                 .shadow(radius: 5, x: 0, y: 5)
@@ -420,64 +454,40 @@ struct ProfileView: View {
                             .padding(.top, 10)
                             .padding(.bottom, 10)
                         }
-
-                    }
-                    
-                    if profileData.userInfo.imageUrl != "" {
-                        WebImage(url: URL(string: profileData.userInfo.imageUrl))
-                            .renderingMode(.original)
-                            .resizable()
-                            .aspectRatio( contentMode: .fill)
-                            .frame(width: 100, height: 100, alignment: .trailing)
-                            .overlay(
-                                Circle()
-                                    .stroke(Color("white"), lineWidth: 4)
-                            )
-                            .padding(EdgeInsets(top: 80, leading: 0, bottom: 0, trailing: 180))
-                            .onTapGesture{
-                                profileData.picker.toggle()
-                            }
-                        
-                        if profileData.isLoading {
-                            ProgressView()
-                        }
-                    } else {
-                        Image("placeholderCircle")
-                            .renderingMode(.original)
-                            .resizable()
-                            .aspectRatio( contentMode: .fill)
-                            .frame(width: 100, height: 100, alignment: .trailing)
-                            .overlay(
-                                Circle()
-                                    .stroke(Color("white"), lineWidth: 4)
-                            )
-                            .padding(EdgeInsets(top: 80, leading: 0, bottom: 0, trailing: 180))
                     }
                 }
+                
                 ZStack {
                     Color("white")
-                        .shadow(radius: 5)
-                    VStack(alignment: .leading, spacing: 0) {
+                        .shadow(radius: 5, x: 0, y: 5)
+                    VStack(spacing:0) {
                         HStack {
                             Text("Bio")
                                 .fontWeight(.bold)
                                 .font(.system(size: 14))
-                                .padding(.leading, 20)
-                                .padding(.bottom, 5)
+                                .padding(.trailing, 10)
+                                .padding(.leading, 30)
                             Button(action: {
                                 profileData.updateDetails(field: "Bio")
                             }){
-                                Image(systemName: "pencil.circle.fill")
+                                Image(systemName: "pencil")
+                                    .foregroundColor(Color("lightPurple"))
                             }
+                            Spacer()
                         }
-                        Text(profileData.userInfo.bio)
-                            .font(.system(size: 14))
-                            .padding(.leading, 20)
-                            .padding(.trailing, 20)
+                        .padding(.top, 10)
+                        .padding(.bottom, 10)
+                        
+                        HStack {
+                            Text(profileData.userInfo.bio)
+                                .font(.system(size: 14))
+                                .padding(.leading, 30)
+                                .padding(.bottom,10)
+                            
+                            Spacer()
+                        }
+                        
                     }
-                    .padding(.top, 10)
-                    .padding(.bottom, 10)
-
                 }
 
                 ZStack {
@@ -548,8 +558,10 @@ struct ProfileView: View {
                                     .padding(.trailing, 5)
                             }
                             .padding(.top,10)
+                            .padding(.bottom, 10)
                             .padding(.leading,10)
                         }
+//                        .padding(.bottom, 10)
                     }
                     .padding(.top, 10)
                 }
